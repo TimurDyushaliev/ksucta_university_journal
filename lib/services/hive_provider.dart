@@ -29,7 +29,8 @@ class HiveProvider {
 
   static Future<void> addGroup(String subjectName, String groupName) {
     final hash = subjectName.hashCode.toString();
-    final groups = getGroups(hash)?..add(groupName);
+    final groups = getGroups(subjectName)?..add(groupName);
+
     if (groups != null) {
       return _groupsBox.put(hash, groups);
     } else {
@@ -43,7 +44,7 @@ class HiveProvider {
 
   static Future<void> deleteGroup(String subjectName, int groupIndex) {
     final hash = subjectName.hashCode.toString();
-    final groups = getGroups(hash)!..removeAt(groupIndex);
+    final groups = getGroups(subjectName)!..removeAt(groupIndex);
     return _groupsBox.put(hash, groups);
   }
 
